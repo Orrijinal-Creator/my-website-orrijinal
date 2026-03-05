@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://YOURUSERNAME.github.io/pinterest-personal-site/sitemap.xml
+Sitemap: https://orrijinal-creator.github.io/my-website-orrijinal/sitemap.xml
