@@ -22,11 +22,6 @@ font-weight:bold;
 padding:60px;
 }
 
-.profile{
-width:120px;
-border-radius:50%;
-}
-
 .btn{
 background:#e60023;
 color:white;
@@ -45,7 +40,7 @@ padding:40px;
 
 .card{
 background:white;
-padding:15px;
+padding:20px;
 width:200px;
 border-radius:10px;
 box-shadow:0 5px 10px rgba(0,0,0,0.1);
@@ -53,12 +48,8 @@ text-decoration:none;
 color:black;
 }
 
-.card img{
-width:100%;
-border-radius:8px;
-}
-
-.pin{
-width:300px;
-border-radius:10px;
+footer{
+background:#222;
+color:white;
+padding:15px;
 }
