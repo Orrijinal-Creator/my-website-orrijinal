@@ -1,8 +1,12 @@
-function savePin(){
+function openModal(){
+document.getElementById("socialModal").style.display="flex";
+}
 
-window.open(
-"https://www.pinterest.com/pin/create/button/",
-"_blank"
-)
+function closeModal(){
+document.getElementById("socialModal").style.display="none";
+}
 
+function sendMessage(event){
+event.preventDefault();
+alert("Message sent successfully!");
 }
