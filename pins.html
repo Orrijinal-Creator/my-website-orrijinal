@@ -9,11 +9,12 @@
 
 <style>
 
-/* BOARD CARDS */
+/* BOARD CARD */
 
 .board-card{
 cursor:pointer;
 text-align:center;
+transition:0.3s;
 }
 
 .board-card:hover{
@@ -21,7 +22,7 @@ transform:translateY(-6px);
 }
 
 
-/* MODAL */
+/* MODAL BACKGROUND */
 
 .pin-modal{
 display:none;
@@ -37,6 +38,9 @@ align-items:center;
 padding:20px;
 }
 
+
+/* MODAL CONTAINER */
+
 .modal-container{
 background:white;
 max-width:1000px;
@@ -49,8 +53,14 @@ animation:fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn{
-from{opacity:0; transform:scale(0.9);}
-to{opacity:1; transform:scale(1);}
+from{
+opacity:0;
+transform:scale(0.9);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
 }
 
 
@@ -116,7 +126,7 @@ transform:scale(1.05);
 
 <h1>My Creative Pins</h1>
 
-<p>Browse some of my favorite creative boards.</p>
+<p>Browse some of my creative Pinterest boards.</p>
 
 </section>
 
@@ -124,18 +134,18 @@ transform:scale(1.05);
 <section class="grid">
 
 <div class="card board-card" onclick="openBoard('avatarBoard')">
-<h3>Avatar Designs</h3>
-<p>Creative avatar ideas and profile icons.</p>
+<h3>Avatar Icons Designs</h3>
+<p>Creative Avatar Ideas and Profile Icons.</p>
 </div>
 
-<div class="card board-card" onclick="openBoard('emojiBoard')">
-<h3>Emoji Characters</h3>
-<p>Expressive cartoon and emoji avatars.</p>
+<div class="card board-card" onclick="openBoard('angryBoard')">
+<h3>Angry Nailong</h3>
+<p>Expressive Angry Nailong Avatars Icons.</p>
 </div>
 
-<div class="card board-card" onclick="openBoard('quotesBoard')">
-<h3>Quote Designs</h3>
-<p>Inspirational Pinterest quote graphics.</p>
+<div class="card board-card" onclick="openBoard('savageBoard')">
+<h3>Savage Nailong</h3>
+<p>Expressive Savage Nailong Avatars Icons.</p>
 </div>
 
 </section>
@@ -168,41 +178,73 @@ transform:scale(1.05);
 
 <script>
 
-/* SAMPLE PIN DATA */
+/* BOARD DATA WITH <img> TAGS */
 
 const boards = {
 
 avatarBoard: {
-title: "Avatar Designs",
+title: "Avatar Icons Designs",
 images: [
-"https://picsum.photos/400?random=1",
-"https://picsum.photos/400?random=2",
-"https://picsum.photos/400?random=3",
-"https://picsum.photos/400?random=4",
-"https://picsum.photos/400?random=5"
+
+'<img src="avatar1.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar2.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar3.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar4.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar5.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar6.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar7.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar8.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar9.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar10.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar11.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar12.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar13.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar14.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar15.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar16.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar17.jpg" alt="Avatar Icon Pin">',
+'<img src="avatar18.jpg" alt="Avatar Icon Pin">'
+
 ]
 },
 
-emojiBoard: {
-title: "Emoji Characters",
+angryBoard: {
+title: "Angry Nailong",
 images: [
-"https://picsum.photos/400?random=6",
-"https://picsum.photos/400?random=7",
-"https://picsum.photos/400?random=8",
-"https://picsum.photos/400?random=9"
+
+'<img src="White Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Black Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Arny Green Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Silver Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Beige Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Lilac Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Maroon Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Cyan Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Purple Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Pink Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Brown Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Orange Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Gray Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Green Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Red Angry Nailong.jpg" alt="Angry Nailong Color Series">',
+'<img src="Blue Angry Nailong.jpg" alt="Angry Nailong Color Series">'
+
 ]
 },
 
-quotesBoard: {
-title: "Quote Designs",
+savageBoard: {
+title: "Savage Nailong",
 images: [
-"https://picsum.photos/400?random=10",
-"https://picsum.photos/400?random=11",
-"https://picsum.photos/400?random=12"
+
+'<img src="Blue Nailong HD Icon - Savage.jpg" alt="Savage Nailong Color Series">',
+'<img src="White Nailong HD Icon - Savage.jpg" alt="Savage Nailong Color Series">',
+'<img src="Matte Black Nailong HD Icon – Savage.jpg" alt="Savage Nailong Color Series">'
+
 ]
 }
 
 };
+
 
 
 /* OPEN BOARD */
@@ -222,7 +264,7 @@ boards[boardName].images.forEach(img => {
 const pin = document.createElement("div");
 pin.classList.add("pin-item");
 
-pin.innerHTML = `<img src="${img}" alt="Pin Image">`;
+pin.innerHTML = img;
 
 gallery.appendChild(pin);
 
@@ -233,11 +275,13 @@ modal.style.display="flex";
 }
 
 
+
 /* CLOSE BOARD */
 
 function closeBoard(){
 document.getElementById("pinModal").style.display="none";
 }
+
 
 
 /* CLOSE WHEN CLICK OUTSIDE */
