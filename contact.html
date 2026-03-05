@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <title>Contact</title>
@@ -10,9 +11,9 @@
 
 <body>
 
-<header>
+<header class="navbar">
 
-<h1>Contact Me</h1>
+<div class="logo">Your Name</div>
 
 <nav>
 <a href="index.html">Home</a>
@@ -24,17 +25,29 @@
 
 </header>
 
-<form>
+<section class="section">
 
-<input type="text" placeholder="Name">
+<h1>Contact Me</h1>
 
-<input type="email" placeholder="Email">
+<p>
+If you would like to collaborate or connect, feel free to send me a message.
+</p>
 
-<textarea placeholder="Message"></textarea>
+<form onsubmit="sendMessage(event)">
 
-<button type="submit">Send</button>
+<input type="text" placeholder="Your Name" required>
+
+<input type="email" placeholder="Your Email" required>
+
+<textarea rows="5" placeholder="Your Message"></textarea>
+
+<button type="submit">Send Message</button>
 
 </form>
+
+</section>
+
+<script src="main.js"></script>
 
 </body>
 </html>
