@@ -94,11 +94,56 @@ gap:20px;
 .pin-item img{
 width:100%;
 border-radius:10px;
+cursor:pointer;
 transition:0.3s;
 }
 
 .pin-item img:hover{
 transform:scale(1.05);
+}
+
+
+/* IMAGE VIEWER */
+
+.image-viewer{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+z-index:2000;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+padding:20px;
+}
+
+.image-viewer img{
+max-width:90%;
+max-height:80%;
+border-radius:10px;
+animation:zoomIn 0.3s ease;
+}
+
+.image-title{
+color:white;
+margin-top:15px;
+font-size:18px;
+text-align:center;
+}
+
+@keyframes zoomIn{
+from{
+transform:scale(0.7);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
 }
 
 </style>
@@ -152,7 +197,7 @@ transform:scale(1.05);
 
 
 
-<!-- MODAL -->
+<!-- BOARD MODAL -->
 
 <div class="pin-modal" id="pinModal">
 
@@ -166,11 +211,21 @@ transform:scale(1.05);
 
 </div>
 
-<div class="pin-grid" id="pinGallery">
+<div class="pin-grid" id="pinGallery"></div>
 
 </div>
 
 </div>
+
+
+
+<!-- IMAGE VIEWER -->
+
+<div class="image-viewer" id="imageViewer" onclick="closeImage()">
+
+<img id="viewerImage">
+
+<div class="image-title" id="imageTitle"></div>
 
 </div>
 
@@ -178,68 +233,62 @@ transform:scale(1.05);
 
 <script>
 
-/* BOARD DATA WITH <img> TAGS */
+/* BOARD DATA */
 
 const boards = {
 
-avatarBoard: {
-title: "Avatar Icons Designs",
-images: [
-
-'<img src="avatar1.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar2.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar3.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar4.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar5.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar6.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar7.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar8.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar9.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar10.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar11.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar12.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar13.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar14.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar15.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar16.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar17.jpg" alt="Avatar Icon Pin">',
-'<img src="avatar18.jpg" alt="Avatar Icon Pin">'
-
+avatarBoard:{
+title:"Avatar Icons Designs",
+images:[
+'<img src="avatar1.jpg">',
+'<img src="avatar2.jpg">',
+'<img src="avatar3.jpg">',
+'<img src="avatar4.jpg">',
+'<img src="avatar5.jpg">',
+'<img src="avatar6.jpg">',
+'<img src="avatar7.jpg">',
+'<img src="avatar8.jpg">',
+'<img src="avatar9.jpg">',
+'<img src="avatar10.jpg">',
+'<img src="avatar11.jpg">',
+'<img src="avatar12.jpg">',
+'<img src="avatar13.jpg">',
+'<img src="avatar14.jpg">',
+'<img src="avatar15.jpg">',
+'<img src="avatar16.jpg">',
+'<img src="avatar17.jpg">',
+'<img src="avatar18.jpg">'
 ]
 },
 
-angryBoard: {
-title: "Angry Nailong",
-images: [
-
-'<img src="White Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Black Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Army Green Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Silver Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Beige Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Lilac Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Maroon Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Cyan Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Purple Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Pink Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Brown Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Orange Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Gray Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Green Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Red Angry Nailong.jpg" alt="Angry Nailong Color Series">',
-'<img src="Blue Angry Nailong.jpg" alt="Angry Nailong Color Series">'
-
+angryBoard:{
+title:"Angry Nailong",
+images:[
+'<img src="White Angry Nailong.jpg">',
+'<img src="Black Angry Nailong.jpg">',
+'<img src="Army Green Angry Nailong.jpg">',
+'<img src="Silver Angry Nailong.jpg">',
+'<img src="Beige Angry Nailong.jpg">',
+'<img src="Lilac Angry Nailong.jpg">',
+'<img src="Maroon Angry Nailong.jpg">',
+'<img src="Cyan Angry Nailong.jpg">',
+'<img src="Purple Angry Nailong.jpg">',
+'<img src="Pink Angry Nailong.jpg">',
+'<img src="Brown Angry Nailong.jpg">',
+'<img src="Orange Angry Nailong.jpg">',
+'<img src="Gray Angry Nailong.jpg">',
+'<img src="Green Angry Nailong.jpg">',
+'<img src="Red Angry Nailong.jpg">',
+'<img src="Blue Angry Nailong.jpg">'
 ]
 },
 
-savageBoard: {
-title: "Savage Nailong",
-images: [
-
-'<img src="Blue Nailong HD Icon - Savage.jpg" alt="Savage Nailong Color Series">',
-'<img src="White Nailong HD Icon - Savage.jpg" alt="Savage Nailong Color Series">',
-'<img src="Matte Black Nailong HD Icon – Savage.jpg" alt="Savage Nailong Color Series">'
-
+savageBoard:{
+title:"Savage Nailong",
+images:[
+'<img src="Blue Nailong HD Icon - Savage.jpg">',
+'<img src="White Nailong HD Icon - Savage.jpg">',
+'<img src="Matte Black Nailong HD Icon-Savage.jpg">'
 ]
 }
 
@@ -251,26 +300,43 @@ images: [
 
 function openBoard(boardName){
 
-const modal = document.getElementById("pinModal");
-const gallery = document.getElementById("pinGallery");
-const title = document.getElementById("boardTitle");
+const modal=document.getElementById("pinModal");
+const gallery=document.getElementById("pinGallery");
+const title=document.getElementById("boardTitle");
 
 gallery.innerHTML="";
+title.innerText=boards[boardName].title;
 
-title.innerText = boards[boardName].title;
+boards[boardName].images.forEach(img=>{
 
-boards[boardName].images.forEach(img => {
-
-const pin = document.createElement("div");
+const pin=document.createElement("div");
 pin.classList.add("pin-item");
 
-pin.innerHTML = img;
+pin.innerHTML=img;
 
 gallery.appendChild(pin);
 
 });
 
 modal.style.display="flex";
+
+/* ADD CLICK TO IMAGES */
+
+setTimeout(()=>{
+
+document.querySelectorAll(".pin-item img").forEach(image=>{
+
+image.onclick=function(e){
+
+e.stopPropagation();
+
+openImage(this.src);
+
+}
+
+});
+
+},100);
 
 }
 
@@ -284,13 +350,38 @@ document.getElementById("pinModal").style.display="none";
 
 
 
-/* CLOSE WHEN CLICK OUTSIDE */
+/* IMAGE VIEWER */
 
-window.onclick = function(event){
+function openImage(src){
 
-const modal = document.getElementById("pinModal");
+document.getElementById("viewerImage").src=src;
 
-if(event.target === modal){
+/* EXTRACT IMAGE NAME */
+
+let name=src.split("/").pop();
+name=name.replace(/\.[^/.]+$/,"");
+
+document.getElementById("imageTitle").innerText=name;
+
+document.getElementById("imageViewer").style.display="flex";
+
+}
+
+function closeImage(){
+
+document.getElementById("imageViewer").style.display="none";
+
+}
+
+
+
+/* CLOSE MODAL OUTSIDE */
+
+window.onclick=function(event){
+
+const modal=document.getElementById("pinModal");
+
+if(event.target===modal){
 modal.style.display="none";
 }
 
@@ -298,7 +389,5 @@ modal.style.display="none";
 
 </script>
 
-
 </body>
 </html>
-
